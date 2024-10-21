@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bingo Telepoir</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.5.6/dialog-polyfill.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.5.6/dialog-polyfill.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Bingo Téléspoir</h1>
+        </div>
+        <div class="content">
+            <dialog class="dialog" id="CardDialog">
+                <form method="dialog">
+                    <p><label>B: <input type="text" id="input_B" placeholder="e.g., 1,2,3,4,5"></label></p>
+                    <p><label>I: <input type="text" id="input_I" placeholder="e.g., 16,17,18,19,20"></label></p>
+                    <p><label>N: <input type="text" id="input_N" placeholder="e.g., 31,32,33,34,35"></label></p>
+                    <p><label>G: <input type="text" id="input_G" placeholder="e.g., 46,47,48,49,50"></label></p>
+                    <p><label>O: <input type="text" id="input_O" placeholder="e.g., 61,62,63,64,65"></label></p>
+                    <menu>
+                        <button value="cancel">Cancel</button>
+                        <button id="confirmBtn" value="default">Confirm</button>
+                    </menu>
+                </form>
+            </dialog>
+            <div class="numeros">
+                <input id="lettre" type="text" placeholder="Lettre">
+                <input id="nombre" type="number" placeholder="Nombre">
+                <button id="submit" onclick="HandleSubmit()">Ajouter</button>
+                <button id="cancel" onclick="HandleCancel()">Annuler</button>
+            </div>
+            <div id="numeros-list">
+                <h2>Numéros tirés</h2>
+                <ul id="numeros-ul">
+                </ul>
+            </div>
+            <button id="save-button">Save Data</button>
+            <input type="file" id="file-input">
+            <button id="new-card" onclick="HandleCardsubmit()">Nouvelle carte</button> 
+            <div class="cards" id="card-list">
+                 
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>

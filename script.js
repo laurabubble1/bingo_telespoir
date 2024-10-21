@@ -100,6 +100,12 @@ function getNumbersList() {
 function HandleSubmit(){
     var lettre = document.getElementById('lettre').value;
     var numero = document.getElementById('nombre').value;
+    if (lettre === '' || numero === '') {
+        alert('Both lettre and numero must be filled out');
+        return;
+    }
+    lettre = lettre.toUpperCase().trim();
+    numero = numero.trim();
     var numerolist = document.getElementById('numeros-ul');
     var li = document.createElement('li');
     length = numerolist.children.length;
@@ -300,3 +306,55 @@ function parseData(data) {
     });
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const lettreInput = document.getElementById('lettre');
+    const nombreInput = document.getElementById('nombre');
+    const cardDialog = document.getElementById('CardDialog');
+
+    // Add event listener for Enter key in the main inputs
+    lettreInput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            HandleSubmit();
+        }
+    });
+
+    nombreInput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            HandleSubmit();
+        }
+    });
+
+    // Add event listener for the submit button
+    document.getElementById('submit').addEventListener('click', function(event) {
+        event.preventDefault();
+        HandleSubmit();
+    });
+
+    // Add event listener for Enter key in the dialog
+    cardDialog.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            cardDialog.querySelector('#confirmBtn').click();
+        }
+    });
+
+    // Add clear button to the dialog
+    const clearButton = document.createElement('button');
+    clearButton.textContent = 'Clear';
+    clearButton.type = 'button'; // Ensure it doesn't submit the form
+    clearButton.onclick = function() {
+        clearDialogInputs();
+    };
+
+    cardDialog.querySelector('form').appendChild(clearButton);
+
+    function clearDialogInputs() {
+        document.getElementById('input_B').value = '';
+        document.getElementById('input_I').value = '';
+        document.getElementById('input_N').value = '';
+        document.getElementById('input_G').value = '';
+        document.getElementById('input_O').value = '';
+    }
+});

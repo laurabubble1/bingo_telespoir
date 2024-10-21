@@ -38,6 +38,7 @@ function CreateCard(cardData) {
         console.error('Cards container not found');
         return;
     }
+    const numbersList = getNumbersList();
 
     const cardNumber = cardsDiv.children.length + 1;
     const cardTable = document.createElement('table');
@@ -58,7 +59,13 @@ function CreateCard(cardData) {
         const row = document.createElement('tr');
         ['B', 'I', 'N', 'G', 'O'].forEach(function(column) {
             const td = document.createElement('td');
-            td.textContent = cardData[column][i] || '';
+            const cellValue = cardData[column][i] || '';
+            if (numbersList.includes(`${column}${cellValue}`)) {
+                td.textContent = cellValue;
+                td.style.backgroundColor = 'green';
+            } else {
+                td.textContent = cellValue;
+            }
             row.appendChild(td);
         });
         cardTable.appendChild(row);
@@ -256,4 +263,13 @@ function parseData(data) {
             currentCard.appendChild(row);
         }
     });
+}
+
+function getNumbersList(){
+    var numerolist = document.getElementById('numeros-ul');
+    var numbers = [];
+    for (let li of numerolist.children) {
+        numbers.push(li.textContent);
+    }
+    return numbers;
 }

@@ -326,11 +326,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Add event listener for the submit button
-    document.getElementById('submit').addEventListener('click', function(event) {
-        event.preventDefault();
-        HandleSubmit();
-    });
+    
 
     // Add event listener for Enter key in the dialog
     cardDialog.addEventListener('keydown', function(event) {

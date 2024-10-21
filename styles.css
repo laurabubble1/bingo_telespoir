@@ -67,7 +67,7 @@ table td{
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Maximum of three columns */
+    grid-template-columns: repeat(4, 1fr); /* Maximum of three columns */
     gap: 20px;
     justify-items: center;
 }

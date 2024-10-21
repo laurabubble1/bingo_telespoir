@@ -1,0 +1,12 @@
+{
+  "name": "bingo_telespoir",
+  "version": "1.0.0",
+  "description": "Bingo Telepoir Game",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

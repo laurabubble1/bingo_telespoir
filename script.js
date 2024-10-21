@@ -38,9 +38,14 @@ function CreateCard(cardData) {
         console.error('Cards container not found');
         return;
     }
+
     const numbersList = getNumbersList();
 
     const cardNumber = cardsDiv.children.length + 1;
+    const cardContainer = document.createElement('div');
+    cardContainer.className = 'card-container';
+    cardContainer.id = `card_container_${cardNumber}`;
+
     const cardTable = document.createElement('table');
     cardTable.className = 'bingo-card';
     cardTable.id = `card_${cardNumber}`;
@@ -71,7 +76,25 @@ function CreateCard(cardData) {
         cardTable.appendChild(row);
     }
 
-    cardsDiv.appendChild(cardTable);
+    // Add delete button
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.onclick = function() {
+        cardContainer.remove();
+    };
+
+    cardContainer.appendChild(cardTable);
+    cardContainer.appendChild(deleteButton);
+    cardsDiv.appendChild(cardContainer);
+}
+
+function getNumbersList() {
+    var numerolist = document.getElementById('numeros-ul');
+    var numbers = [];
+    for (let li of numerolist.children) {
+        numbers.push(li.textContent);
+    }
+    return numbers;
 }
 
 function HandleSubmit(){
@@ -227,7 +250,19 @@ function parseData(data) {
         if (line.startsWith('Card')) {
             currentCard = document.createElement('table');
             currentCard.className = 'bingo-card';
-            document.getElementById('card-list').appendChild(currentCard);
+
+            const cardContainer = document.createElement('div');
+            cardContainer.className = 'card-container';
+            cardContainer.appendChild(currentCard);
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.onclick = function() {
+                cardContainer.remove();
+            };
+            cardContainer.appendChild(deleteButton);
+
+            document.getElementById('card-list').appendChild(cardContainer);
 
             const headerRow = document.createElement('tr');
             ['B', 'I', 'N', 'G', 'O'].forEach(column => {
@@ -265,11 +300,3 @@ function parseData(data) {
     });
 }
 
-function getNumbersList(){
-    var numerolist = document.getElementById('numeros-ul');
-    var numbers = [];
-    for (let li of numerolist.children) {
-        numbers.push(li.textContent);
-    }
-    return numbers;
-}

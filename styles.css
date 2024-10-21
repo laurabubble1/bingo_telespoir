@@ -67,9 +67,16 @@ table td{
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* Maximum of three columns */
     gap: 20px;
     justify-items: center;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
 }
 
 table.bingo-card {
@@ -80,5 +87,9 @@ table.bingo-card {
 table.bingo-card th, table.bingo-card td {
     border: 1px solid #333;
     text-align: center;
-    padding: 10px;
+    padding: 10px; /* Added padding to th and td */
+}
+
+button {
+    margin-top: 10px;
 }
